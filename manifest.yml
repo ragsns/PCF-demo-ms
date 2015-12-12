@@ -1,6 +1,9 @@
 ---
 applications:
 - name: pcfdemo-producer
+  buildpack: java_buildpack
+  env:
+    JBP_CONFIG_SPRING_BOOT_CLI: '{ version: 1.2.7_RELEASE }'
   memory: 512M 
   instances: 1
   host: pcfdemo-producer-${random-word}
@@ -9,8 +12,9 @@ applications:
   services:
    - myrabbit
 - name: pcfdemo-map
+  buildpack: java_buildpack
   memory: 512M 
-  instances: 2
+  instances: 1
   host: pcfdemo-map-${random-word}
   path: PCFDemo-map/target/pcfdemo-map.war
   timeout: 90
